@@ -36,16 +36,10 @@ class Poker_Table():
         self.black = players[0]
 
     def place_blinds(self):
-
-        if self.A.is_white:
-            self.A.chips -= self.small_blind
-            self.B.chips -= self.big_blind
-
-        else:
-            self.B.chips -= self.small_blind
-            self.A.chips -= self.big_blind
-
+        self.white.chips -= self.small_blind
+        self.black.chips -= self.big_blind
         self.pot += self.small_blind + self.big_blind
+
         self.small_blind += 50
         self.big_blind = self.small_blind * 2
 
