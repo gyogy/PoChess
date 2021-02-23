@@ -8,7 +8,7 @@ class Player():
     def __init__(self, name):
 
         self.name = name
-        self.is_white = None
+        self.is_white = False
         self.chips = 5000
         self.bet = 0
         self.hand = []
@@ -34,12 +34,11 @@ class Poker_Table():
 
     def invert_colors(self):
 
-        if self.A.is_white is not None:
-            self.A.is_white = not self.A.is_white
-            self.B.is_white = not self.B.is_white
-
-        else:
+        if self.A.is_white == self.B.is_white:
             self.A.is_white = choice([True, False])
+            self.B.is_white = not self.A.is_white
+        else:
+            self.A.is_white = self.B.is_white
             self.B.is_white = not self.A.is_white
 
     def place_blinds(self):

@@ -9,19 +9,15 @@ class TestPokerTableClass(unittest.TestCase):
         self.B = Player('Ygoyg')
         self.pt = Poker_Table(self.A, self.B)
 
-    def test_invert_colors_func_when_is_white_is_none(self):
+    def test_invert_colors_func_when_iswhite_params_are_equal(self):
 
-        color_A = self.pt.A.is_white
-        self.assertIsNone(color_A)
+        self.assertEqual(self.pt.A.is_white, self.pt.B.is_white)
 
         self.pt.invert_colors()
-        color_A = self.pt.A.is_white
-        color_B = self.pt.B.is_white
 
-        self.assertIsNotNone(color_A)
-        self.assertNotEqual(color_A, color_B)
+        self.assertNotEqual(self.pt.A.is_white, self.pt.B.is_white)
 
-    def test_invert_colors_when_is_white_has_a_previous_value(self):
+    def test_invert_colors_when_iswhite_params_are_different(self):
 
         self.pt.A.is_white = True
         self.pt.B.is_white = False
