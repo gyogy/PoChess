@@ -4,28 +4,13 @@ from ..classes import Player, Poker_Table
 class TestPokerTableClass(unittest.TestCase):
 
     def setUp(self):
+        self.table = Poker_Table(Player('Gyogy'), Player('Ygoyg'))
 
-        self.A = Player('Gyogy')
-        self.B = Player('Ygoyg')
-        self.pt = Poker_Table(self.A, self.B)
+    def test_invert_colors(self):
+        old_white = self.table.white.name
+        old_black = self.table.black.name
 
-    def test_invert_colors_func_when_iswhite_params_are_equal(self):
+        self.table.invert_colors()
 
-        self.assertEqual(self.pt.A.is_white, self.pt.B.is_white)
-
-        self.pt.invert_colors()
-
-        self.assertNotEqual(self.pt.A.is_white, self.pt.B.is_white)
-
-    def test_invert_colors_when_iswhite_params_are_different(self):
-
-        self.pt.A.is_white = True
-        self.pt.B.is_white = False
-
-        self.pt.invert_colors()
-
-        self.assertFalse(self.pt.A.is_white)
-        self.assertTrue(self.pt.B.is_white)
-
-    def test_placing_of_blinds(self):
-        pass
+        self.assertEqual(old_white, self.table.black.name)
+        self.assertEqual(old_black, self.table.white.name)

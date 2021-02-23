@@ -8,7 +8,6 @@ class Player():
     def __init__(self, name):
 
         self.name = name
-        self.is_white = False
         self.chips = 5000
         self.bet = 0
         self.hand = []
@@ -18,36 +17,35 @@ class Player():
 
 class Poker_Table():
 
-    def __init__(self, A, B):
+    def __init__(self, player1, player2):
 
-        self.A = A
-        self.B = B
+        self.white = player1
+        self.black = player2
         self.phase = 0
         self.small_blind = 100
         self.big_blind = self.small_blind * 2
         self.pot = 0
 
     def deal(self, n, player):
-
-        for i in range(n):
-            self.player.hand.append(DECK.pop())
+        pass
 
     def invert_colors(self):
 
-        if self.A.is_white == self.B.is_white:
-            self.A.is_white = choice([True, False])
-            self.B.is_white = not self.A.is_white
-        else:
-            self.A.is_white = self.B.is_white
-            self.B.is_white = not self.A.is_white
+        players = (self.white, self.black)
+        self.white = players[1]
+        self.black = players[0]
 
     def place_blinds(self):
 
         if self.A.is_white:
-            pass
-        else:
-            pass
+            self.A.chips -= self.small_blind
+            self.B.chips -= self.big_blind
 
+        else:
+            self.B.chips -= self.small_blind
+            self.A.chips -= self.big_blind
+
+        self.pot += self.small_blind + self.big_blind
         self.small_blind += 50
         self.big_blind = self.small_blind * 2
 
