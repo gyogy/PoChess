@@ -1,7 +1,12 @@
-from random import choice
+# from random import choice
 
 deck = 16 * 'p' + 8 * 'N' + 8 * 'B' + 8 * 'R' + 4 * 'Q'
 DECK = list(deck)
+
+
+class Card():
+    pass
+
 
 class Player():
 
