@@ -5,7 +5,10 @@ DECK = list(deck)
 
 
 class Card():
-    pass
+
+    def __init__(self, face, val):
+        self.face = face
+        self.val = val
 
 
 class Player():

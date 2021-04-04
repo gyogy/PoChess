@@ -1,5 +1,5 @@
 import unittest
-from ..classes import Player, Poker_Table
+from ..classes import Player, Poker_Table, Card
 
 class TestPokerTableClass(unittest.TestCase):
 
