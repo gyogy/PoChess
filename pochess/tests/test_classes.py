@@ -1,6 +1,17 @@
 import unittest
 from ..classes import Player, Poker_Table, Card
 
+
+class TestCardClass(unittest.TestCase):
+
+    def setUp(self):
+        self.c = Card('p', 'p')
+
+    def test_val_setting(self):
+        self.c.set_val('Q')
+
+        self.assertEqual(self.c.val, 'Q')
+
 class TestPokerTableClass(unittest.TestCase):
 
     def setUp(self):

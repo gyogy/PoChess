@@ -7,8 +7,17 @@ DECK = list(deck)
 class Card():
 
     def __init__(self, face, val):
-        self.face = face
-        self.val = val
+        self.face = str(face)
+        self.val = str(val)
+
+    def __repr__(self):
+        if self.face != self.val:
+            return f'A {self.face} worth a {self.val}'
+        else:
+            return f'A {self.face}'
+
+    def set_val(self, new_val):
+        self.val = str(new_val)
 
 
 class Player():
