@@ -1,7 +1,5 @@
 # from random import choice
-
-deck = 16 * 'p' + 8 * 'N' + 8 * 'B' + 8 * 'R' + 4 * 'Q'
-DECK = list(deck)
+from random import shuffle
 
 
 class Card():
@@ -32,33 +30,22 @@ class Player():
 # raise (all-in option), call, check, fold
 
 
-class Poker_Table():
+class Dealer():
 
-    def __init__(self, player1, player2):
+    def __init__(self, deck):
+        self.deck = deck
 
-        self.white = player1
-        self.black = player2
-        self.phase = 0
-        self.small_blind = 100
-        self.big_blind = self.small_blind * 2
-        self.pot = 0
+    def shuffle(self):
+        shuffle(self.deck)
 
-    def deal(self, n, player):
-        pass
+    def deal(self, n):
+        cards = []
 
-    def invert_colors(self):
+        for i in range(n):
+            card = self.deck.pop()
+            cards.append(card)
 
-        players = (self.white, self.black)
-        self.white = players[1]
-        self.black = players[0]
-
-    def place_blinds(self):
-        self.white.chips -= self.small_blind
-        self.black.chips -= self.big_blind
-        self.pot += self.small_blind + self.big_blind
-
-        self.small_blind += 50
-        self.big_blind = self.small_blind * 2
+        return cards
 
 
 '''

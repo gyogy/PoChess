@@ -1,6 +1,9 @@
 import unittest
-from ..classes import Player, Poker_Table, Card
+from ..classes import Player, Dealer, Card
 
+# @classmethod
+# def setUpClass(cls):
+#     pass
 
 class TestCardClass(unittest.TestCase):
 
@@ -23,7 +26,7 @@ class TestCardClass(unittest.TestCase):
         self.assertEqual(self.deck[-1].val, 'p')
         '''
         this doesn't break the next test =>
-        setUp is run for each method separately
+        setUp is run separately for each method
         '''
 
     def test_dealing_two_cards(self):
@@ -42,16 +45,30 @@ class TestCardClass(unittest.TestCase):
         self.assertEqual(result1.face, 'R')
         self.assertEqual(result2.face, 'B')
 
-class TestPokerTableClass(unittest.TestCase):
 
+class TestDealerClass(unittest.TestCase):
     def setUp(self):
-        self.table = Poker_Table(Player('Gyogy'), Player('Ygoyg'))
+        deck = 16 * 'p' + 8 * 'N' + 8 * 'B' + 8 * 'R' + 4 * 'Q'
+        DECK = [Card(letter, letter) for letter in deck]
 
-    def test_invert_colors(self):
-        old_white = self.table.white.name
-        old_black = self.table.black.name
+        self.dealer = Dealer(DECK)
+        self.tosho = Player('tOsHeCa')
 
-        self.table.invert_colors()
+    def test_shuffle(self):
+        self.dealer.shuffle()
 
-        self.assertEqual(old_white, self.table.black.name)
-        self.assertEqual(old_black, self.table.white.name)
+        default = 16 * 'p'
+        result = ''
+
+        for i in range(16):
+            result += self.dealer.deck[i].face
+
+        self.assertNotEqual(default, result)
+
+    def test_deal_two(self):
+        self.tosho.hand += self.dealer.deal(2)
+        self.assertEqual(len(self.tosho.hand), 2)
+
+#    def test_deal_more_cards_than_in_deck(self):
+#        self.assertEqual(44, len(self.dealer.deck))
+#        self.tosho.hand += self.dealer.deal(45)
